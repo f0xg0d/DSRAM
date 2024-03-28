@@ -8,7 +8,9 @@ multiple fixes including:
  - change to append attribute in likelihood
 
 changes likelihood display to percentage instead of float
-![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/01fa5c34-5d4f-47c1-abac-1e5dbf0be456)
+
+![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/4f95af4f-4e34-4ad1-9bc0-a61039933f46)
+![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/2bc87dc8-5122-4ae8-b030-fc3c4c036678)
 
 # INSTALLATION
 use "pip install ." inside the DSRAM folder
