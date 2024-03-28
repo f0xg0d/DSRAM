@@ -9,8 +9,8 @@ multiple fixes including:
 
 changes likelihood display to percentage instead of float
 
-![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/4f95af4f-4e34-4ad1-9bc0-a61039933f46)
-![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/2bc87dc8-5122-4ae8-b030-fc3c4c036678)
+![image](https://github.com/f0xg0d/DSRAM/assets/13192426/d044ab67-21bc-46ba-9805-35b6826ee3f9)
+
 
 # INSTALLATION
 use "pip install ." inside the DSRAM folder
