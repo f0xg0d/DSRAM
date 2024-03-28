@@ -5,6 +5,8 @@ changes to append attribute in likelihood.py
 
 changes likelihood display to percentage instead of float
 
+# INSTALLATION
+use "pip install ." inside the DSRAM folder
 
 # DSRAM
 Deploy Securely Risk Assessment Model
