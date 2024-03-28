@@ -45,7 +45,7 @@ def get_nvd_data(list_of_years):
 
   counter = 0
   df = []
-  
+
   for year in list_of_years:
     url = 'https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-'+str(year)+'.json.zip'
     extract_target = 'nvdcve-1.1-'+str(year)+'.json'
@@ -57,11 +57,11 @@ def get_nvd_data(list_of_years):
     stage_4 = stage_3.extract(extract_target)
     yearly_data = pd.read_json(stage_4)
     if counter == 0:
-        df = yearly_data
+      df = yearly_data
     else:
-        df = df._append(yearly_data)
+      df = df._append(yearly_data)
     counter +=1
-
+ 
   # Flatenning CVE_Items
   CVE_Items = pd.json_normalize(df["CVE_Items"])
 
