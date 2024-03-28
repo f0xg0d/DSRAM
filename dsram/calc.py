@@ -76,7 +76,7 @@ if cve_ids:
 
   df_epss = df_epss.set_index('cve_id')
   print('Risk of Occurence - by vulnerability')
-  print(df_epss[['epss_30_day', 'epss_365_day']])
+  print(df_epss[['epss_30_day', 'epss_365_day']].to_string())
 
 else:
   cve_ids = False
