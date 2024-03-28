@@ -59,7 +59,7 @@ def get_nvd_data(list_of_years):
     if counter == 0:
         df = yearly_data
     else:
-        df = df.append(yearly_data)
+        df = df._append(yearly_data)
     counter +=1
 
   # Flatenning CVE_Items
