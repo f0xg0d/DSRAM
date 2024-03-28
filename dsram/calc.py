@@ -1,7 +1,7 @@
 from dsram import likelihood, severity
 import pandas as pd
 import argparse
-
+import re
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-i", "--input", type=str, dest="input_file",
@@ -17,22 +17,18 @@ x.append(df['CVE'])
 cve_list = df['CVE'].tolist()
 cve_list = map(str, cve_list)
 cve_list_clean=[]
+cve_filter = re.compile(r'CVE-200[2-9]|CVE-20[1-9][0-9]')
 for cve in cve_list:
-  if 'CVE-' in cve:
+  if re.match(cve_filter, cve):
     cve_list_clean.append(cve)
 cve_list_clean = list(dict.fromkeys(cve_list_clean))
-cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
-
+#cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
+cve_ids = 'CVE-2022-27600 CVE-2022-2760 CVE-2013-2324' #@param {type:"string"}
 print(cve_ids)
-
-#cve_ids = 'CVE-2021-44228 CVE-2024-21650 CVE-2024-22252 CVE-2023-34048 CVE-2021-21972' #@param {type:"string"}
-
 if cve_ids:
 
   epss = likelihood.get_all_epss()
 
-  # Regex is necessary to clean up messy data
-  import re
   # CVE regular expression (from https://stackoverflow.com/questions/60178826/extracting-cve-info-with-a-python-3-regular-expression)
   cve_pattern = r'CVE-\d{4}-\d{1,10}'
   cve_pattern_years = r'CVE-\d{4}'
@@ -56,12 +52,18 @@ if cve_ids:
   epss_365_day_list = []
 
   for cve in cves:
-    epss_30_day = epss.loc[cve]['epss_30_day']
-    epss_30_day_list.append(epss_30_day)
-    cve_age = nvd_data.loc[cve]['cve_age']
-    cve_age_list.append(cve_age)
-    epss_365_day = likelihood.epss_365_day_from_epss_30_day(cve_age, epss_30_day)
-    epss_365_day_list.append(epss_365_day)
+    try:
+      epss_30_day = epss.loc[cve]['epss_30_day']
+      epss_30_day_list.append(epss_30_day)
+      cve_age = nvd_data.loc[cve]['cve_age']
+      cve_age_list.append(cve_age)
+      epss_365_day = likelihood.epss_365_day_from_epss_30_day(cve_age, epss_30_day)
+      epss_365_day_list.append(epss_365_day)
+    except:
+      epss_30_day_list.append('-')
+      cve_age_list.append('-')
+      epss_365_day_list.append('-')
+      pass
 
   import pandas as pd
 
