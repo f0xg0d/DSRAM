@@ -23,7 +23,6 @@ for cve in cve_list:
     cve_list_clean.append(cve)
 cve_list_clean = list(dict.fromkeys(cve_list_clean))
 cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
-cve_ids = 'CVE-2016-2182 CVE-1999-0524 CVE-2005-4900'
 print('This might take a while...')
 if cve_ids:
 
@@ -78,13 +77,12 @@ if cve_ids:
   df_epss = pd.DataFrame(
       {'cve_id': cves,
       'epss_30_day': epss_30_day_list,
-      'epss_365_day': epss_365_day_list,
       'cve_age': cve_age_list
       })
 
   df_epss = df_epss.set_index('cve_id')
   print('Risk of Occurence - by vulnerability')
-  print(df_epss[['epss_30_day', 'epss_365_day']].to_string())
+  print(df_epss[['epss_30_day']].to_string())
 
 else:
   cve_ids = False
