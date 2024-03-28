@@ -1,9 +1,14 @@
-# INFO
+# CHANGES
 added calc.py
 
-changes to append attribute in likelihood.py
+added support for input file (currently needs to be the 1st sheet, with the name "Nessus result")
+
+multiple fixes including:
+ - filter for old cve's w/o data on nvd.nist.gov feed
+ - change to append attribute in likelihood
 
 changes likelihood display to percentage instead of float
+![grafik](https://github.com/f0xg0d/DSRAM/assets/13192426/01fa5c34-5d4f-47c1-abac-1e5dbf0be456)
 
 # INSTALLATION
 use "pip install ." inside the DSRAM folder
