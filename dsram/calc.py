@@ -1,8 +1,31 @@
 from dsram import likelihood, severity
+import pandas as pd
+import argparse
 
-#@title 365-day EPSS by CVE (leave blank if not CVE) { run: "auto" }
+parser = argparse.ArgumentParser()
 
-cve_ids = 'CVE-2021-44228' #@param {type:"string"}
+parser.add_argument("-i", "--input", type=str, dest="input_file",
+                    action="store", required=True)
+
+args = parser.parse_args()
+
+
+df = pd.ExcelFile(args.input_file).parse('Nessus result') #could convert to not hardcoded input?
+
+x=[]
+x.append(df['CVE'])
+cve_list = df['CVE'].tolist()
+cve_list = map(str, cve_list)
+cve_list_clean=[]
+for cve in cve_list:
+  if 'CVE-' in cve:
+    cve_list_clean.append(cve)
+cve_list_clean = list(dict.fromkeys(cve_list_clean))
+cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
+
+print(cve_ids)
+
+#cve_ids = 'CVE-2021-44228 CVE-2024-21650 CVE-2024-22252 CVE-2023-34048 CVE-2021-21972' #@param {type:"string"}
 
 if cve_ids:
 
