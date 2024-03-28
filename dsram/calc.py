@@ -22,9 +22,8 @@ for cve in cve_list:
   if re.match(cve_filter, cve):
     cve_list_clean.append(cve)
 cve_list_clean = list(dict.fromkeys(cve_list_clean))
-#cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
-cve_ids = 'CVE-2022-27600 CVE-2022-2760 CVE-2013-2324' #@param {type:"string"}
-print(cve_ids)
+cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
+print('This might take a while...')
 if cve_ids:
 
   epss = likelihood.get_all_epss()
