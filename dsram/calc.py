@@ -22,7 +22,7 @@ cve_filter = re.compile(r'CVE-200[2-9]|CVE-20[1-9][0-9]')
 for cve in cve_list:
   if re.match(cve_filter, cve):
     cve_list_clean.append(cve)
-cve_list_clean = list(dict.fromkeys(cve_list_clean))
+#cve_list_clean = list(dict.fromkeys(cve_list_clean))
 cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
 if cve_ids:
 
