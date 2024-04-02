@@ -2,7 +2,7 @@
 - added calc.py
 - added progress bar
 - added support for input file (uses 1st sheet of the file)
-- filter for old cve's w/o data on nvd.nist.gov feed
+- filter for old cve's w/o data on nvd.nist.gov feed (cve'S pre 2002)
 - fix to append attribute in likelihood
 - changes likelihood display to percentage instead of float
 
