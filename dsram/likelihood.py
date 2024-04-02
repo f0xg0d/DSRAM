@@ -42,11 +42,12 @@ def get_nvd_data(list_of_years):
   from io import BytesIO
   from zipfile import ZipFile
   import pandas as pd
+  from tqdm import tqdm
 
   counter = 0
   df = []
-
-  for year in list_of_years:
+  print(f'Getting Data from nvd.nist.gov\nThis might take a while...')
+  for year in tqdm(list_of_years):
     url = 'https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-'+str(year)+'.json.zip'
     extract_target = 'nvdcve-1.1-'+str(year)+'.json'
     # Extracting zip file
