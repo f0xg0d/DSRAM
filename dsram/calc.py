@@ -11,7 +11,7 @@ parser.add_argument("-i", "--input", type=str, dest="input_file",
 args = parser.parse_args()
 
 
-df = pd.ExcelFile(args.input_file).parse(sheetname=0) #could convert to not hardcoded input?
+df = pd.ExcelFile(args.input_file).parse(sheetname=0) #always uses the 1st sheet
 
 x=[]
 x.append(df['CVE'])
