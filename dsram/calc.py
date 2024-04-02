@@ -2,6 +2,7 @@ from dsram import likelihood, severity
 import pandas as pd
 import argparse
 import re
+import tqdm
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-i", "--input", type=str, dest="input_file",
@@ -10,7 +11,7 @@ parser.add_argument("-i", "--input", type=str, dest="input_file",
 args = parser.parse_args()
 
 
-df = pd.ExcelFile(args.input_file).parse('Nessus result') #could convert to not hardcoded input?
+df = pd.ExcelFile(args.input_file).parse(sheetname=0) #could convert to not hardcoded input?
 
 x=[]
 x.append(df['CVE'])
@@ -23,24 +24,21 @@ for cve in cve_list:
     cve_list_clean.append(cve)
 cve_list_clean = list(dict.fromkeys(cve_list_clean))
 cve_ids = ' '.join(str(cve) for cve in cve_list_clean)
-print('This might take a while...')
 if cve_ids:
 
   epss = likelihood.get_all_epss()
 
   # CVE regular expression (from https://stackoverflow.com/questions/60178826/extracting-cve-info-with-a-python-3-regular-expression)
   cve_pattern = r'CVE-\d{4}-\d{1,10}'
-  cve_pattern_years = r'CVE-200[2-9]|CVE-20[1-9][0-9]'
+  cve_pattern_years = r'rCVE-200[2-9]|CVE-20[1-9][0-9]'
 
   #get years of cves to scope nvd data pull
   cve_years = re.findall(cve_pattern_years, cve_ids)
   cve_years_list = []
-
   for year in cve_years:
     new_year = year.split('CVE-')[1]
     if new_year not in cve_years_list:
       cve_years_list.append(new_year)
-
   nvd_data = likelihood.get_nvd_data(cve_years_list)
   #search for CVE references using RegEx
   cves = re.findall(cve_pattern, cve_ids)
