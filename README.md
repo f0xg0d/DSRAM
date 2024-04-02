@@ -1,13 +1,10 @@
 # CHANGES
-added calc.py
-
-added support for input file (currently needs to be the 1st sheet, with the name "Nessus result")
-
-multiple fixes including:
- - filter for old cve's w/o data on nvd.nist.gov feed
- - change to append attribute in likelihood
-
-changes likelihood display to percentage instead of float
+- added calc.py
+- added progress bar
+- added support for input file (uses 1st sheet of the file)
+- filter for old cve's w/o data on nvd.nist.gov feed
+- fix to append attribute in likelihood
+- changes likelihood display to percentage instead of float
 
 ![image](https://github.com/f0xg0d/DSRAM/assets/13192426/d044ab67-21bc-46ba-9805-35b6826ee3f9)
 
